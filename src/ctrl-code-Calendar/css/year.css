@@ -1,0 +1,19 @@
+.ctrl-code-year {
+  display: grid;
+  grid-template-columns: 100px 1fr 100px;
+  justify-items: center;
+  border: 1px solid green;
+}
+.ctrl-code-year .arrow {
+  color: orange;
+  font-weight: bold;
+  cursor: pointer;
+}
+.ctrl-code-year .arrow:hover {
+  color: cyan;
+}
+.ctrl-code-year .text {
+  color: red;
+}
+
+/*# sourceMappingURL=year.css.map */

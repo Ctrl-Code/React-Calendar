@@ -1,0 +1,21 @@
+.ctrl-code-year{
+
+    display: grid;
+    grid-template-columns: 100px 1fr 100px;
+    justify-items: center;
+    border: 1px solid green;
+
+    .arrow{
+        color: orange;
+        font-weight: bold;
+        cursor: pointer;
+
+        &:hover{
+            color: cyan;
+        }
+    }
+
+    .text{
+        color: red;
+    }
+}

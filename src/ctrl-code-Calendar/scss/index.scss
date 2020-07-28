@@ -1,0 +1,12 @@
+.ctrl-code-box{
+    display: grid;
+    outline: none;
+
+    .inputField{
+        outline: none;
+    }
+}
+
+.ctrl-code-box .calendar{
+    border: 1px solid blue;
+}

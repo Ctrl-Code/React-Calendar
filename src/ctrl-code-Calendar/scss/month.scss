@@ -1,0 +1,21 @@
+.ctrl-code-month{
+
+    display: grid;
+    grid-template-columns: 100px 1fr 100px;
+    justify-items: center;
+    border: 1px solid green;
+
+    .arrow{
+        color: red;
+        font-weight: bold;
+        cursor: pointer;
+
+        &:hover{
+            color: blue;
+        }
+    }
+
+    .text{
+        color: green;
+    }
+}

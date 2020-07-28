@@ -1,0 +1,16 @@
+.ctrl-code-days{
+    display: grid;
+    grid-template-columns: repeat(7,1fr);
+    justify-items: center;
+
+    .dates{
+        cursor: pointer;
+        width: 100%;
+        display: grid;
+        justify-content: center;
+
+        &:hover{
+            background-color: red;
+        }
+    }
+}
