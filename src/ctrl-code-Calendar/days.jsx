@@ -63,6 +63,7 @@ function useGetStartingDayOfMonth(month, year) {
 
     let [startingDayOfMonth, setStartingDayOfMonth] = useState(0);
 
+    // reducing the calculation by making a user hook
     useEffect(() => {
         let x = new Date();
         x.setUTCHours(0, 0, 0, 0);

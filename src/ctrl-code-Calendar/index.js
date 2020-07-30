@@ -1,39 +1,52 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./css/index.css";
 
 import Month from "./month";
 import Year from "./year";
 import Days from "./days";
 
+const functions = require("./functions");
+
 function CtrlCodeCalendar(props) {
+
+    // state to show calendar
     let [showCalendar, setShowCalendar] = useState(true);
-    
+
+    let initialDate = functions.destructureEpoch(new Date(props.epoch).getTime());
+
+    // date calculate states
+    const [date, setDate] = useState(initialDate.date);
+    const [month, setMonth] = useState(initialDate.month + 1);
+    const [year, setYear] = useState(initialDate.year);
+
+    let { setEpoch } = props;
+    useEffect(() => setEpoch(functions.getEpoch(date, month, year)), [date, month, year, setEpoch]);
+
     let toggleShowCalendar = event => {
         setShowCalendar(showCalendar ? false : true);
         event.stopPropagation();
     }
 
     let inputFieldValue = () => {
-        let { date, month, year } = props;
+        let localDate = date, localMonth = month, localYear = year;
 
-        if (props.date < 10) {
-            date = "0" + props.date;
+        if (date < 10) {
+            localDate = "0" + date;
         }
 
-        if (props.month < 10) {
-            month = "0" + props.month;
+        if (month < 10) {
+            localMonth = "0" + month;
         }
 
-        return `${date}/${month}/${year}`;
+        return `${localDate}/${localMonth}/${localYear}`;
     };
 
     return (
-        <div className="ctrl-code-box" style={{ width: props.width }}>
+        <div className="ctrl-code-box" style={{ width: props.width || "300px" }}>
             <input
                 onClick={toggleShowCalendar}
                 type="text"
                 readOnly={true}
-                onChange={event => props.setDate(event.target.value)}
                 className="inputField"
                 value={inputFieldValue()}
             />
@@ -41,9 +54,9 @@ function CtrlCodeCalendar(props) {
             {/* CALENDAR DIV */}
             {showCalendar && (
                 <div className="calendar" style={{ height: "auto", backgroundColor: "yellow" }}>
-                    <Year year={props.year} setYear={props.setYear} />
-                    <Month month={props.month} setMonth={props.setMonth} />
-                    <Days year={props.year} month={props.month} setDate={props.setDate} />
+                    <Year year={year} setYear={year => setYear(year)} />
+                    <Month month={month - 1} setMonth={month => setMonth(month + 1)} />
+                    <Days year={year} month={month - 1} setDate={date => setDate(date)} />
                 </div>
             )
             }
